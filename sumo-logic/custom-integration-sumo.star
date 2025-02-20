@@ -26,7 +26,7 @@ def sync_to_sumo(assets):
             batch = assets[i:i+batchsize]
             tmp = ""
             for a in batch:
-                tmp = tmp + "{}\n".format(a)
+                tmp = tmp + "{}\n".format(json_encode(a))
             post_to_sumo = http_post(url=SUMO_HTTP_ENDPOINT, body=bytes(tmp))
     else:
         print("No assets found")
