@@ -1,6 +1,18 @@
-# Welcome to the runZero Custom Integrations Library 👋
+# runZero Custom Integrations
 
-## Existing Integrations 
+👋 Welcome to the runZero Custom Integration library!
+
+runZero is a total attack surface and exposure management platform that combines [active scanning](https://help.runzero.com/docs/discovering-assets/), [passive discovery](https://help.runzero.com/docs/traffic-sampling/), and API integrations to deliver complete visibility into managed and unmanaged assets across IT, OT, IoT, cloud, mobile, and remote environments. runZero can be used as a hosted service (SaaS) or managed on-premise. The runZero stack consists of one more Consoles, linked Explorers that run as light-weight services on network points-of-presence, and a command-line tool that can be used for offline data collection. runZero can be managed through the web interface, via API, or for self-hosted customers, on the command line.
+
+If you are not a runZero user today, [sign up](https://www.runzero.com/try) for a trial that can be converted to our free Community Edition.
+
+This repository includes **custom integrations** that run in the context of a runZero Explorer. These integrations are written in Starlark, a language similar to Python.
+
+To create a custom integration within runZero, you will need a user account with `superuser` privileges.
+
+You can find detailed documentation about Starlark-based integrations on the [runZero help portal](https://help.runzero.com/docs/custom-integration-scripts/).
+
+# Existing Integrations 
 
 ## Import to runZero 
 - [Digital Ocean](./digital-ocean/)
@@ -12,14 +24,14 @@
 ## Export from runZero 
 - [Sumo Logic](./sumo-logic/)
 
-## Building Integrations and Contributing
+# Building Integrations and Contributing
 
-### The boilerplate folder has examples to follow
+## The boilerplate folder has examples to follow
 
 1. Sample [README.md](./boilerplate/README.md) for contributing
 2. Sample [script](./boilerplate/custom-integration-boilerplate.star) that shows how to use all of the supported libraries
 
-### Contributing
+## Contributing
 
 We welcome contributions to this repository! Whether you're fixing a bug, adding a new feature, or improving documentation, your efforts make a difference. To ensure a smooth process, please follow these guidelines:
 
