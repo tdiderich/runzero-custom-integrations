@@ -12,6 +12,10 @@ To create a custom integration within runZero, you will need a user account with
 
 You can find detailed documentation about Starlark-based integrations on the [runZero help portal](https://help.runzero.com/docs/custom-integration-scripts/).
 
+# Getting Help
+
+If you need help setting up a custom integration, you can create an [issue](https://github.com/runZeroInc/runzero-custom-integrations/issues/new) on this GitHub repo, and our team will work with you. If you have a Customer Success Engineer, you can also work with them directly. 
+
 # Existing Integrations 
 
 ## Import to runZero 
