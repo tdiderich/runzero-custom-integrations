@@ -31,7 +31,7 @@
     - Use a placeholder value like `foo` for `access_key` (unused in this integration).
 3. **Create the Custom Integration**:
     - Go to [runZero Custom Integrations](https://console.runzero.com/custom-integrations/new).
-    - Add a **Name and Icon** for the integration (e.g., "Automox").
+    - Add a **Name and Icon** for the integration (e.g., "automox").
     - Toggle `Enable custom integration script` to input the finalized script.
     - Click `Validate` and then `Save`.
 4. **Schedule the Integration Task**:
@@ -46,7 +46,7 @@
 - The task will kick off on the [tasks](https://console.runzero.com/tasks) page.
 - Assets in runZero will be updated based on **Automox device inventory**.
 - The script captures details like **OS version, agent status, compliance, and IPs**.
-- Search for these assets in runZero using `custom_integration:Automox`.
+- Search for these assets in runZero using `custom_integration:automox`.
 
 ### Notes
 
