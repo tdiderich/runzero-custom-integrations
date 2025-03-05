@@ -353,7 +353,7 @@ def get_endpoints(tanium_url, tanium_token):
     return endpoints
 
 def main(*args, **kwargs):
-    tanium_url = "https://tk-runzero-api.titankube.com"
+    tanium_url = "https://<update-me>.titankube.com"
     tanium_token = kwargs['access_secret']
 
     tanium_endpoints = get_endpoints(tanium_url, tanium_token)
