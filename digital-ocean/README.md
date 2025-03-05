@@ -28,7 +28,7 @@
     - Use the `access_secret` field for your Digital Ocean API token.
     - For `access_key`, input a placeholder value like `foo` (unused in this integration).
 3. [Create the Custom Integration](https://console.runzero.com/custom-integrations/new).
-    - Add a Name and Icon for the integration (e.g., "Digital Ocean").
+    - Add a Name and Icon for the integration (e.g., "digital-ocean").
     - Toggle `Enable custom integration script` to input the finalized script.
     - Click `Validate` to ensure it has valid syntax.
     - Click `Save` to create the Custom Integration.
@@ -43,4 +43,4 @@
 - You will see the task kick off on the [tasks](https://console.runzero.com/tasks) page like any other integration.
 - The task will update the existing assets with the data pulled from the Custom Integration source.
 - The task will create new assets for when there are no existing assets that meet merge criteria (hostname, MAC, etc).
-- You can search for assets enriched by this custom integration with the runZero search `custom_integration:Digital Ocean`.
+- You can search for assets enriched by this custom integration with the runZero search `custom_integration:digital-ocean`.

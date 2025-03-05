@@ -32,7 +32,7 @@
     - Use the `access_key` field for your **Carbon Black Org Key**.
     - Use the `access_secret` field for your **Carbon Black API Key**.
 3. [Create the Custom Integration](https://console.runzero.com/custom-integrations/new).
-    - Add a Name and Icon for the integration (e.g., "Carbon Black").
+    - Add a Name and Icon for the integration (e.g., "carbonblack").
     - Toggle `Enable custom integration script` to input the finalized script.
     - Click `Validate` to ensure it has valid syntax.
     - Click `Save` to create the Custom Integration.

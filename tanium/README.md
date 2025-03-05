@@ -28,7 +28,7 @@
     - Use the `access_secret` field for your Tanium API Token.
     - For `access_key`, input a placeholder value like `foo` (unused in this integration).
 3. [Create the Custom Integration](https://console.runzero.com/custom-integrations/new).
-    - Add a Name and Icon for the integration (e.g., "Tanium").
+    - Add a Name and Icon for the integration (e.g., "tanium").
     - Toggle `Enable custom integration script` to input the finalized script.
     - Click `Validate` to ensure it has valid syntax.
     - Click `Save` to create the Custom Integration.
@@ -49,4 +49,4 @@
 - Ensure that your Tanium GraphQL API endpoint is accessible from the system running the runZero Explorer.
 - You can monitor task execution and check for any errors or issues in the [tasks](https://console.runzero.com/tasks) page.
 - Customize the `build_assets` function to include additional fields or mappings as needed for your organization.
-- Search for assets enriched by this integration using the runZero search query `custom_integration:Tanium`.
+- Search for assets enriched by this integration using the runZero search query `custom_integration:tanium`.
