@@ -29,7 +29,7 @@
     - Use the `access_secret` field for your runZero API Export Token.
     - For `access_key`, input a placeholder value like `foo` (unused in this integration).
 3. [Create the Custom Integration](https://console.runzero.com/custom-integrations/new).
-    - Add a Name and Icon for the integration (e.g., "Sumo Logic").
+    - Add a Name and Icon for the integration (e.g., "sumo-logic-export").
     - Toggle `Enable custom integration script` to input the finalized script.
     - Click `Validate` to ensure it has valid syntax.
     - Click `Save` to create the Custom Integration.
