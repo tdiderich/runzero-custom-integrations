@@ -15,7 +15,7 @@
 
 1. **Obtain your Automox API Key**:
    - Log in to your Automox console.
-   - Navigate to **Settings** > **API**.
+   - Navigate to the kebab menu (3 vertical dots in the upper right) and then click on **Keys**
    - Generate a **new API Key** with read permissions.
 2. **Note your API Key** for use in the integration.
 
