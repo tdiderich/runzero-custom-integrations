@@ -19,10 +19,13 @@ If you need help setting up a custom integration, you can create an [issue](http
 # Existing Integrations 
 
 ## Import to runZero 
+- [Automox](./automox/)
+- [Carbon Black](./carbon-black/)
 - [Digital Ocean](./digital-ocean/)
 - [Drata](./drata/)
 - [JAMF](./jamf/)
 - [Lima Charlie](./lima-charlie/)
+- [Palo Alto Cortex XDR](./cortex-xdr/)
 - [Tanium](./tanium/)
 
 ## Export from runZero 
