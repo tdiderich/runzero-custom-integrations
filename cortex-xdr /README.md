@@ -49,7 +49,7 @@
 - The task will appear on the [tasks](https://console.runzero.com/tasks) page.
 - Assets in runZero will be updated with **endpoint data from Cortex XDR**.
 - The script captures details like **agent status, policies, OS version, compliance, and IPs**.
-- Search for these assets in runZero using `custom_integration:Cortex XDR`.
+- Search for these assets in runZero using `custom_integration:cortex-xdr`.
 
 ### Notes
 
