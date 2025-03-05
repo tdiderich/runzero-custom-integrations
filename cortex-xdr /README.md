@@ -6,8 +6,7 @@
 
 ## Cortex XDR requirements
 
-- **API Key** with access to **endpoint data**.
-- **API Key ID** required for authentication.
+- **API Key ID** and **API Key** required for authentication.
 - **Cortex XDR API Base URL** (depends on your region).
 
 ## Steps
@@ -16,11 +15,12 @@
 
 1. **Obtain your Cortex XDR API credentials**:
    - Log in to **Cortex XDR**.
-   - Navigate to **Settings** > **API Access**.
-   - Generate an API Key with access to **endpoint data**.
+   - Navigate to **Settings** > **Configurations** > **Integrations** > **API Keys**.
+   - Select **+ New Key**.
+   - Choose **Standard** as the type of API Key.
    - Note the **API Key** and **API Key ID**.
 2. **Find your Cortex XDR API Base URL**:
-   - Example: `https://<tenant>.xdr.us.paloaltonetworks.com/public_api/v1/`.
+   - Example: `https://api-{fqdn}.xdr.us.paloaltonetworks.com/public_api/v1/`.
 
 ### runZero configuration
 
@@ -34,7 +34,7 @@
     - Enter your **Cortex XDR API Key ID** as `access_key`.
 3. **Create the Custom Integration**:
     - Go to [runZero Custom Integrations](https://console.runzero.com/custom-integrations/new).
-    - Add a **Name and Icon** for the integration (e.g., "Cortex XDR").
+    - Add a **Name and Icon** for the integration (e.g., "cortex-xdr").
     - Toggle `Enable custom integration script` to input the finalized script.
     - Click `Validate` and then `Save`.
 4. **Schedule the Integration Task**:
