@@ -6,7 +6,6 @@ load('uuid', 'new_uuid')
 
 DIGITAL_OCEAN_OAUTH_URL = 'https://cloud.digitalocean.com/v1/'
 DIGITAL_OCEAN_API_URL = 'https://api.digitalocean.com/v2/'
-RUNZERO_REDIRECT = 'https://console.runzero.com/'
 
 def build_assets(assets_json):
     assets_import = []
