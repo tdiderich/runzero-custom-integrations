@@ -15,12 +15,12 @@
 ### Carbon Black configuration
 
 1. Obtain your **API Key** from Carbon Black Cloud:
-   - Navigate to **Settings** > **API Access** in the Carbon Black Cloud console.
-   - Generate an API Key with access to the **Devices API**.
+   - Navigate to **Settings** > **API Access** > **API Keys** tab in the Carbon Black Cloud console.
+   - Generate an API Key with access to the **Devices API** and **Vulnerability API**.
    - Note down the **API Key** and **Org Key** (`org_key`).
 2. Find your Carbon Black API URL:
    - This depends on your region (e.g., `https://defense.conferdeploy.net`).
-   - Refer to the [Carbon Black API Documentation](https://developer.carbonblack.com/) for details.
+   - Refer to the [Carbon Black API Documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/authentication/#hostname) for a list of hostnames it could be.
 
 ### runZero configuration
 
@@ -29,8 +29,8 @@
     - Adjust which attributes are included in runZero.
 2. [Create the Credential for the Custom Integration](https://console.runzero.com/credentials).
     - Select the type `Custom Integration Script Secrets`.
-    - Use the `access_secret` field for your **Carbon Black API Key**.
     - Use the `access_key` field for your **Carbon Black Org Key**.
+    - Use the `access_secret` field for your **Carbon Black API Key**.
 3. [Create the Custom Integration](https://console.runzero.com/custom-integrations/new).
     - Add a Name and Icon for the integration (e.g., "Carbon Black").
     - Toggle `Enable custom integration script` to input the finalized script.
@@ -47,11 +47,10 @@
 - You will see the task kick off on the [tasks](https://console.runzero.com/tasks) page like any other integration.
 - The task will update the existing assets with the data pulled from Carbon Black.
 - The task will create new assets for when there are no existing assets that meet merge criteria (hostname, MAC, etc).
-- You can search for assets enriched by this custom integration with the runZero search `custom_integration:Carbon Black`.
+- You can search for assets enriched by this custom integration with the runZero search `custom_integration:carbonblack`.
 
 ### Notes
 
 - The integration automatically retrieves **all device attributes** available in Carbon Black Cloud.
 - Data such as **sensor version, status, policy, network details, and security attributes** are included in `customAttributes`.
-- The script supports **pagination**, ensuring that **all devices** are retrieved (even if more than 1000 exist).
 - Use the **runZero search queries** to filter assets by key attributes.
