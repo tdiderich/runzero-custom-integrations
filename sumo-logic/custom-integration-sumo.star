@@ -13,14 +13,15 @@ def get_assets(headers):
     url = BASE_URL + "/export/org/assets.json?{}".format(url_encode({"search": SEARCH}))
     get_assets = http_get(url=url, headers=headers, timeout=600)
     assets_json = json_decode(get_assets.body)
-    print("assets_json", assets_json)
     if get_assets.status_code == 200 and len(assets_json) > 0:
+        print("Got {} assets".format(len(assets_json)))
         return assets_json
     else:
         print("runZero did not return any assets - status code {}".format(get_assets.status_code))
         return None
 
 def sync_to_sumo(assets):
+    print("Sending {} assets to Sumo Logic".format(len(assets)))
     batchsize = 500
     if len(assets) > 0:
         for i in range(0, len(assets), batchsize):
