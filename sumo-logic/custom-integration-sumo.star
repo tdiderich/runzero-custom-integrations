@@ -10,9 +10,10 @@ SEARCH = "alive:t"
 def get_assets(headers):
     # get assets to upload to sumo
     assets = []
-    url = BASE_URL + "/export/org/assets.json"
-    get_assets = http_get(url=url, headers=headers, body=bytes(url_encode({"search": SEARCH})))
+    url = BASE_URL + "/export/org/assets.json?{}".format(url_encode({"search": SEARCH}))
+    get_assets = http_get(url=url, headers=headers, timeout=600)
     assets_json = json_decode(get_assets.body)
+    print("assets_json", assets_json)
     if get_assets.status_code == 200 and len(assets_json) > 0:
         return assets_json
     else:
@@ -35,6 +36,8 @@ def sync_to_sumo(assets):
 def main(*args, **kwargs):
     rz_export_token = kwargs['access_secret']
     headers = {"Authorization": "Bearer {}".format(rz_export_token)}
+    print("starting asset GET")
     assets = get_assets(headers=headers)
+    print("got assets")
     if assets:
         sync_to_sumo(assets=assets)
