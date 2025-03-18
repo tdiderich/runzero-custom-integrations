@@ -37,8 +37,6 @@ def sync_to_sumo(assets):
 def main(*args, **kwargs):
     rz_export_token = kwargs['access_secret']
     headers = {"Authorization": "Bearer {}".format(rz_export_token)}
-    print("starting asset GET")
     assets = get_assets(headers=headers)
-    print("got assets")
     if assets:
         sync_to_sumo(assets=assets)
