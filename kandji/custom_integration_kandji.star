@@ -5,7 +5,7 @@ load('json', json_encode='encode', json_decode='decode')
 load('http', http_get='get')
 load('net', 'ip_address')
 
-KANDJI_API_URL = "https://example.kandji.io/api/v1"
+KANDJI_API_URL = "https://{sub_domain}.kandji.io/api/v1"
 PAGE_LIMIT = 300  # Number of devices to fetch per request
 
 def get_device_list(api_token):
