@@ -24,6 +24,7 @@ If you need help setting up a custom integration, you can create an [issue](http
 - [Digital Ocean](./digital-ocean/)
 - [Drata](./drata/)
 - [JAMF](./jamf/)
+- [Kandji](./kandji/)
 - [Lima Charlie](./lima-charlie/)
 - [Palo Alto Cortex XDR](./cortex-xdr/)
 - [Tanium](./tanium/)
