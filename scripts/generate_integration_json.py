@@ -27,31 +27,30 @@ for entry in os.listdir("."):
     if not (os.path.isfile(readme_path) and integration_file):
         continue
 
-    # Default name is the folder name
+    # Defaults
     friendly_name = entry
-    type = "inbound"
+    integration_type = "inbound"
 
     # Override with config.json if available
     if os.path.isfile(config_path):
         try:
             with open(config_path) as cf:
                 config = json.load(cf)
-                if "name" in config:
-                    friendly_name = config["name"]
-                if "type" in config:
-                    type = config.get("type", "inbound")
+                friendly_name = config.get("name", entry)
+                integration_type = config.get("type", "inbound")
         except Exception as e:
             print(f"⚠️  Failed to read config.json in {entry}: {e}")
 
     integration_details.append(
         {
             "name": friendly_name,
-            "type": type,
+            "type": integration_type,
             "readme": f"{BASE_REPO_URL}/{entry}/README.md",
             "integration": f"{BASE_REPO_URL}/{entry}/{integration_file}",
         }
     )
 
+# --- Save JSON ---
 output = {
     "lastUpdated": datetime.utcnow().isoformat() + "Z",
     "totalIntegrations": len(integration_details),
@@ -62,3 +61,55 @@ with open("integrations.json", "w") as f:
     json.dump(output, f, indent=2)
 
 print("✅ integrations.json created.")
+
+# --- Update README.md ---
+readme_path = "README.md"
+
+try:
+    with open(readme_path, "r") as f:
+        lines = f.readlines()
+except FileNotFoundError:
+    print("❌ README.md not found.")
+    exit(1)
+
+new_lines = []
+in_inbound_section = False
+in_outbound_section = False
+in_section = None
+
+# Prepare the new sections
+inbound_links = []
+outbound_links = []
+
+for integration in sorted(integration_details, key=lambda x: x["name"].lower()):
+    link = (
+        f"- [{integration['name']}]({integration['readme'].replace('/README.md', '/')})"
+    )
+    if integration["type"] == "outbound":
+        outbound_links.append(link)
+    else:
+        inbound_links.append(link)
+
+# Rewrite README content
+for line in lines:
+    stripped = line.strip()
+    if stripped == "## Import to runZero":
+        new_lines.append(line)
+        new_lines.extend([f"{link}\n" for link in inbound_links])
+        in_inbound_section = True
+        continue
+    elif stripped == "## Export from runZero":
+        new_lines.append(line)
+        new_lines.extend([f"{link}\n" for link in outbound_links])
+        in_outbound_section = True
+        continue
+    elif stripped.startswith("## ") and (in_inbound_section or in_outbound_section):
+        in_inbound_section = in_outbound_section = False
+
+    if not in_inbound_section and not in_outbound_section:
+        new_lines.append(line)
+
+with open(readme_path, "w") as f:
+    f.writelines(new_lines)
+
+print("✅ README.md updated.")
