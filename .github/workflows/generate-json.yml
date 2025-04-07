@@ -1,30 +1,38 @@
-name: Generate Integration JSON
+name: Post Merge Sync Integrations
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
 
 jobs:
-  generate-json:
+  post-merge-sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Generate JSON file
+      - name: Run integration update script
         run: python scripts/generate_integration_json.py
 
-      - name: Commit and push changes
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add integrations.json
-          git commit -m "Update integrations.json"
-          git push
+      - name: Create Pull Request
+        id: rz-auto-update
+        uses: peter-evans/create-pull-request@253935418100774e6d13aa1d877700be09f535f5 # v7
+        with:
+          committer: "GitHub <noreply@github.com>"
+          author: "GitHub <noreply@github.com>"
+          commit-message: "Auto: update integrations JSON and README"
+          branch: auto/readme-json
+          delete-branch: true
+          title: "Auto: update integrations JSON and README"
+          labels: integrations-json
+
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        run: gh pr merge --auto --merge --delete-branch "${{ steps.rz-auto-update.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
