@@ -11,3 +11,4 @@ Before submitting your pull request, please ensure that you have completed the f
 - [ ] **New Integration Folder:** A new folder has been created for the integration.
 - [ ] **Updated README:** The README has been updated based on the boilerplate to reflect the new integration details.
 - [ ] **customer-integration.star File:** The `customer-integration-<name>.star` file has been created/updated as required.
+- [ ] **config.json File:** The `config.json` is updated with the `name` (product name) and `type` (inbound or outbound) of integration 
