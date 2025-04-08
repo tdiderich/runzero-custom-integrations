@@ -2,7 +2,7 @@ name: Update integrations JSON when relevant files change
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
     paths:
       - '**/*.json'
       - '**/*.star'
