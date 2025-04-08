@@ -16,6 +16,7 @@ jobs:
       - name: Checkout PR branch
         uses: actions/checkout@v3
         with:
+          fetch-depth: 0  # 🔧 ensure full history
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -25,11 +26,15 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Fetch base branch
+        run: |
+          git remote add upstream https://github.com/${{ github.repository }}.git  # 🔧 always fetch from main repo
+          git fetch upstream ${{ github.event.pull_request.base.ref }}
+
       - name: Get list of changed files
         id: changed-files
         run: |
-          git fetch origin ${{ github.event.pull_request.base.ref }}
-          git diff --name-status origin/${{ github.event.pull_request.base.ref }}...HEAD > changed_files.txt
+          git diff --name-status upstream/${{ github.event.pull_request.base.ref }}...HEAD > changed_files.txt
           cat changed_files.txt
 
       - name: Check if .star added or .json added/modified
