@@ -57,7 +57,7 @@ output = {
     "integrationDetails": integration_details,
 }
 
-with open("integrations.json", "w") as f:
+with open("docs/integrations.json", "w") as f:
     json.dump(output, f, indent=2)
 
 print("✅ integrations.json created.")
