@@ -4,6 +4,7 @@ load('net', 'ip_address')
 load('http', http_post='post', http_get='get', 'url_encode')
 
 JAMF_URL = 'https://<UPDATE_ME>.jamfcloud.com'
+START_DATE = '2025-03-08' # pulls assets that have checked in since this date ... format: YYYY-MM-DD
 MAX_REQUESTS = 100
 
 def get_bearer_token(client_id, client_secret):
@@ -68,7 +69,8 @@ def get_jamf_inventory(token, request_count, client_id, client_secret):
     page = 0
     page_size = 100
     endpoints = []
-    url = JAMF_URL + '/api/v1/computers-inventory?filter=general.lastContactTime%3Dge%3D%222025-03-08%22'
+    # hardcoded filter for the time being until we support datetime
+    url = JAMF_URL + '/api/v1/computers-inventory?filter=general.lastContactTime%3Dge%3D%22{}%22'.format(START_DATE)
 
     while hasNextPage:
         params = {"page": page, "page-size": page_size}
@@ -121,7 +123,8 @@ def get_mobile_device_inventory(token, request_count, client_id, client_secret):
     page = 0
     page_size = 100
     mobile_devices = []
-    url = JAMF_URL + "/api/v2/mobile-devices/detail?filter=general.lastInventoryUpdateDate%3Dge%3D%222025-03-08%22"
+    # hardcoded filter for the time being until we support datetime
+    url = JAMF_URL + "/api/v2/mobile-devices/detail?filter=general.lastInventoryUpdateDate%3Dge%3D%2220{}%22".format(START_DATE)
 
     while hasNextPage:
         params = {"page": page, "page-size": page_size, "section": "GENERAL"}
@@ -169,12 +172,36 @@ def get_mobile_device_details(token, request_count, client_id, client_secret, in
 
     return mobile_devices_final, token, request_count
 
+def is_private_ip(ip):
+    return (
+        ip.startswith("10.") or
+        ip.startswith("192.168.") or
+        ip.startswith("172.16.") or
+        ip.startswith("172.17.") or
+        ip.startswith("172.18.") or
+        ip.startswith("172.19.") or
+        ip.startswith("172.20.") or
+        ip.startswith("172.21.") or
+        ip.startswith("172.22.") or
+        ip.startswith("172.23.") or
+        ip.startswith("172.24.") or
+        ip.startswith("172.25.") or
+        ip.startswith("172.26.") or
+        ip.startswith("172.27.") or
+        ip.startswith("172.28.") or
+        ip.startswith("172.29.") or
+        ip.startswith("172.30.") or
+        ip.startswith("172.31.")
+    )
+
 def asset_ips(item):
     general = item.get("general") or {}
     ips = []
-    for key in ["lastIpAddress", "ipAddress"]:
+    for key in ["lastIpAddress", "ipAddress", "lastReportedIp"]:
         ip = general.get(key)
-        if ip:
+        # only add Private IPs to the inventory 
+        # remote assets put a lot of junk in the inventory with ISP public IP addresses
+        if ip and is_private_ip(ip):
             ips.append(ip)
     return ips
 
