@@ -29,7 +29,6 @@ Please provide a brief description of your changes and the context for this inte
 
 ### Checklist
 
-- [ ] **Add label:** Add the `new-integration` label to this PR for the correct automation to trigger on this PR.
 - [ ] **New Integration Folder:** A new folder has been created for the integration.  
 - [ ] **Updated README:** The README has been updated based on the boilerplate to reflect the new integration details.  
 - [ ] **customer-integration.star File:** The `customer-integration-<name>.star` file has been created/updated as required.  
