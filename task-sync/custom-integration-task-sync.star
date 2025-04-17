@@ -27,8 +27,8 @@ def sync_task(task_id, saas_token, self_token):
     # Download data from SaaS
     print("Pulling task with ID {}".format(task_id))
     download_url = "{}/api/v1.0/org/tasks/{}/data".format(SAAS_BASE_URL, task_id)
-    download = http_get(download_url, headers={"Authorization": "Bearer {}".format(saas_token), "Accept": "application/json"}, timeout=3600)
-
+    download = http_get(download_url, headers={"Authorization": "Bearer {}".format(saas_token), "Accept": "application/octet-stream", "Content-Encoding": "gzip"}, timeout=3600)
+    print(type(download.body))
     if download.status_code != 200:
         print("Failed to download task:", task_id)
         return False
