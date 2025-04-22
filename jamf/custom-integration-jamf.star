@@ -10,7 +10,6 @@ duration_str = "-{}h".format(DAYS_AGO * 24)  # Go duration format, e.g. "-720h" 
 ago_duration = parse_duration(duration_str)
 start_time = now() + ago_duration  # Subtracting the duration
 START_DATE = str(start_time)[:10]  # "YYYY-MM-DD"
-print(START_DATE)
 MAX_REQUESTS = 100
 
 def get_bearer_token(client_id, client_secret):
@@ -390,17 +389,15 @@ def main(*args, **kwargs):
     inventory, token, request_count = get_jamf_inventory(token, request_count, client_id, client_secret)
     if not inventory:
         print("No inventory data found for computers")
-    print(len(inventory))
+    
+    details, token, request_count = get_jamf_details(token, request_count, client_id, client_secret, inventory)
+    if not details:
+        print("No details retrieved for computers")
+
     # Fetch and process mobile device inventory
     mobile_inventory, token, request_count = get_mobile_device_inventory(token, request_count, client_id, client_secret)
     if not mobile_inventory:
         print("No inventory data found for mobile devices")
-    
-    print(len(mobile_inventory))
-
-    details, token, request_count = get_jamf_details(token, request_count, client_id, client_secret, inventory)
-    if not details:
-        print("No details retrieved for computers")
 
     mobile_details, token, request_count = get_mobile_device_details(token, request_count, client_id, client_secret, mobile_inventory)
     if not mobile_details:
