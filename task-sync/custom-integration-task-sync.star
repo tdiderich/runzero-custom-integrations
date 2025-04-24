@@ -1,5 +1,6 @@
 load('http', http_get='get', http_post='post', http_put='put', 'url_encode')
 load('json', json_decode='decode')
+load('gzip', gzip_decompress='decompress', gzip_compress='compress')
 
 # Parameters from kwargs
 SAAS_ORG_ID = "4ffe8ffb-18e7-451b-9aea-7c967ad07f8e"
@@ -28,15 +29,15 @@ def sync_task(task_id, saas_token, self_token):
     print("Pulling task with ID {}".format(task_id))
     download_url = "{}/api/v1.0/org/tasks/{}/data".format(SAAS_BASE_URL, task_id)
     download = http_get(download_url, headers={"Authorization": "Bearer {}".format(saas_token), "Accept": "application/octet-stream", "Content-Encoding": "gzip"}, timeout=3600)
-    print(type(download.body))
     if download.status_code != 200:
         print("Failed to download task:", task_id)
         return False
 
     # Upload data to self-hosted
     print("Uploading task with ID {}".format(task_id))
+    unzipped = gzip_decompress(download.body)
     upload_url = "{}/api/v1.0/org/sites/{}/import?_oid={}".format(SELF_BASE_URL, SELF_SITE_ID, SELF_ORG_ID)
-    upload = http_put(upload_url, headers={"Authorization": "Bearer {}".format(self_token), "Content-Type": "application/octet-stream", "Content-Encoding": "gzip"}, body=bytes(download.body), timeout=3600)
+    upload = http_put(upload_url, headers={"Authorization": "Bearer {}".format(self_token), "Content-Type": "application/octet-stream", "Content-Encoding": "gzip"}, body=gzip_compress(unzipped), timeout=3600)
 
     if upload.status_code != 200:
         print("Failed to upload task:", task_id)
