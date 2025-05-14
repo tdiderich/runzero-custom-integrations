@@ -21,14 +21,20 @@ If you need help setting up a custom integration, you can create an [issue](http
 ## Import to runZero 
 - [Automox](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/automox/)
 - [Carbon Black](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/carbon-black/)
+- [Cisco-ISE](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/cisco-ise/)
 - [Cortex XDR](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/cortex-xdr/)
+- [Device42](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/device42/)
 - [Digital Ocean](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/digital-ocean/)
 - [Drata](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/drata/)
 - [JAMF](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/jamf/)
 - [Kandji](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/kandji/)
 - [Lima Charlie](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/)
+- [Manage Engine Endpoint Central](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/manage-engine-endpoint-central/)
+- [Netskope](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/netskope/)
+- [NinjaOne](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/ninjaone/)
 - [Tanium](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/tanium/)
 ## Export from runZero 
+- [runZero Vunerability Workflow](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/vulnerability-workflow/)
 - [Sumo Logic](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/sumo-logic/)
 ## The boilerplate folder has examples to follow
 

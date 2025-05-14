@@ -1,7 +1,55 @@
 {
-  "lastUpdated": "2025-04-16T13:38:57.530777Z",
-  "totalIntegrations": 10,
+  "lastUpdated": "2025-05-14T16:39:06.479718Z",
+  "totalIntegrations": 16,
   "integrationDetails": [
+    {
+      "name": "Drata",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/drata/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/drata/custom-integration-drata.star"
+    },
+    {
+      "name": "Manage Engine Endpoint Central",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/manage-engine-endpoint-central/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/manage-engine-endpoint-central/custom-integration-endpoint-central.star"
+    },
+    {
+      "name": "runZero Vunerability Workflow",
+      "type": "outbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/vulnerability-workflow/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/vulnerability-workflow/custom-integration-vulnerability-workflow.star"
+    },
+    {
+      "name": "Digital Ocean",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/digital-ocean/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/digital-ocean/custom-integration-digital-ocean.star"
+    },
+    {
+      "name": "Lima Charlie",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/custom-integration-lima-charlie.star"
+    },
+    {
+      "name": "NinjaOne",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/ninjaone/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/ninjaone/custom-integration-ninjaone.star"
+    },
+    {
+      "name": "Netskope",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/netskope/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/netskope/custom-integration-netskope.star"
+    },
+    {
+      "name": "Carbon Black",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/carbon-black/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/carbon-black/custom-integration-carbon-black.star"
+    },
     {
       "name": "Automox",
       "type": "inbound",
@@ -21,22 +69,10 @@
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/cortex-xdr/custom-integration-cortex-xdr.star"
     },
     {
-      "name": "Lima Charlie",
+      "name": "Cisco-ISE",
       "type": "inbound",
-      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/README.md",
-      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/custom-integration-lima-charlie.star"
-    },
-    {
-      "name": "Carbon Black",
-      "type": "inbound",
-      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/carbon-black/README.md",
-      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/carbon-black/custom-integration-carbon-black.star"
-    },
-    {
-      "name": "Digital Ocean",
-      "type": "inbound",
-      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/digital-ocean/README.md",
-      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/digital-ocean/custom-integration-digital-ocean.star"
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/cisco-ise/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/cisco-ise/custom_integration_cisco-ise.star"
     },
     {
       "name": "Kandji",
@@ -51,16 +87,16 @@
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/jamf/custom-integration-jamf.star"
     },
     {
+      "name": "Device42",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/device42/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/device42/custom-integration-device42.star"
+    },
+    {
       "name": "Tanium",
       "type": "inbound",
       "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/tanium/README.md",
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/tanium/custom-integration-tanium.star"
-    },
-    {
-      "name": "Drata",
-      "type": "inbound",
-      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/drata/README.md",
-      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/drata/custom-integration-drata.star"
     }
   ]
 }

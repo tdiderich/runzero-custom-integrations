@@ -2,9 +2,14 @@ load('runzero.types', 'ImportAsset', 'NetworkInterface')
 load('json', json_encode='encode', json_decode='decode')
 load('net', 'ip_address')
 load('http', http_post='post', http_get='get', 'url_encode')
+load('time', 'now', 'parse_duration')
 
 JAMF_URL = 'https://<UPDATE_ME>.jamfcloud.com'
-START_DATE = '2025-03-08' # pulls assets that have checked in since this date ... format: YYYY-MM-DD
+DAYS_AGO = 60  # Adjust as needed
+duration_str = "-{}h".format(DAYS_AGO * 24)  # Go duration format, e.g. "-720h" for 30 days
+ago_duration = parse_duration(duration_str)
+start_time = now() + ago_duration  # Subtracting the duration
+START_DATE = str(start_time)[:10]  # "YYYY-MM-DD"
 MAX_REQUESTS = 100
 
 def get_bearer_token(client_id, client_secret):
@@ -70,10 +75,10 @@ def get_jamf_inventory(token, request_count, client_id, client_secret):
     page_size = 100
     endpoints = []
     # hardcoded filter for the time being until we support datetime
-    url = JAMF_URL + '/api/v1/computers-inventory?filter=general.lastContactTime%3Dge%3D%22{}%22'.format(START_DATE)
+    url = JAMF_URL + '/api/v1/computers-inventory'
 
     while hasNextPage:
-        params = {"page": page, "page-size": page_size}
+        params = {"page": page, "page-size": page_size, "filter": 'general.lastContactTime=ge="{}T00:00:00Z"'.format(START_DATE)}
         resp, token, request_count = http_request("GET", url, params=params, token=token, request_count=request_count, client_id=client_id, client_secret=client_secret)
         if not resp or resp.status_code != 200:
             print("Failed to retrieve inventory. Status code:", getattr(resp, 'status_code', 'None'))
@@ -85,6 +90,7 @@ def get_jamf_inventory(token, request_count, client_id, client_secret):
             return endpoints, token, request_count
 
         results = inventory.get('results', [])
+
         if not results:
             hasNextPage = False
             continue
@@ -124,10 +130,10 @@ def get_mobile_device_inventory(token, request_count, client_id, client_secret):
     page_size = 100
     mobile_devices = []
     # hardcoded filter for the time being until we support datetime
-    url = JAMF_URL + "/api/v2/mobile-devices/detail?filter=general.lastInventoryUpdateDate%3Dge%3D%2220{}%22".format(START_DATE)
+    url = JAMF_URL + "/api/v2/mobile-devices/detail"
 
     while hasNextPage:
-        params = {"page": page, "page-size": page_size, "section": "GENERAL"}
+        params = {"page": page, "page-size": page_size, "section": "GENERAL", "filter": 'lastInventoryUpdateDate=ge="{}T00:00:00Z"'.format(START_DATE)}
         resp, token, request_count = http_request("GET", url, params=params, token=token, request_count=request_count, client_id=client_id, client_secret=client_secret)
         if not resp or resp.status_code != 200:
             print("Failed to retrieve mobile device inventory. Status code:", getattr(resp, 'status_code', 'None'))
@@ -139,6 +145,7 @@ def get_mobile_device_inventory(token, request_count, client_id, client_secret):
             return mobile_devices, token, request_count
 
         results = inventory.get('results', [])
+
         if not results:
             hasNextPage = False
             continue
@@ -382,7 +389,7 @@ def main(*args, **kwargs):
     inventory, token, request_count = get_jamf_inventory(token, request_count, client_id, client_secret)
     if not inventory:
         print("No inventory data found for computers")
-
+    
     details, token, request_count = get_jamf_details(token, request_count, client_id, client_secret, inventory)
     if not details:
         print("No details retrieved for computers")
