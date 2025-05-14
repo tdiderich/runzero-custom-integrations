@@ -3,11 +3,11 @@ load('json', json_decode='decode')
 load('gzip', gzip_decompress='decompress', gzip_compress='compress')
 
 # Parameters from kwargs
-SAAS_ORG_ID = "4ffe8ffb-18e7-451b-9aea-7c967ad07f8e"
-SAAS_SITE_ID = "a7b2287e-51fa-47fc-bd00-6a68eed0786b"
+SAAS_ORG_ID = "ORG-UUID-REPLACE"
+SAAS_SITE_ID = "SITE-UUID-REPLACE"
 SAAS_BASE_URL = "https://console.runzero.com"
-SELF_ORG_ID = "e9004d87-e127-4863-aa5e-5c302e87694e"
-SELF_SITE_ID = "0396debb-1874-41d2-933e-c2cf4f59a8e5"
+SELF_ORG_ID = "ORG-UUID-REPLACE"
+SELF_SITE_ID = "SITE-UUID-REPLACE"
 SELF_BASE_URL = "https://console.runzero.com"
 SAAS_TASK_SEARCH_FILTER = 'name:="test"'
 
