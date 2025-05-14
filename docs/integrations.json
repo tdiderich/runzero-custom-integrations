@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-05-14T18:03:18.630195Z",
+  "lastUpdated": "2025-05-14T18:05:08.106092Z",
   "totalIntegrations": 17,
   "integrationDetails": [
     {
@@ -87,7 +87,7 @@
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/jamf/custom-integration-jamf.star"
     },
     {
-      "name": "runZero",
+      "name": "runZero Task Sync",
       "type": "inbound",
       "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/task-sync/README.md",
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/task-sync/custom-integration-task-sync.star"
