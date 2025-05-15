@@ -1,7 +1,13 @@
 {
-  "lastUpdated": "2025-05-14T18:05:08.106092Z",
-  "totalIntegrations": 17,
+  "lastUpdated": "2025-05-15T18:53:38.255222Z",
+  "totalIntegrations": 18,
   "integrationDetails": [
+    {
+      "name": "Snipe-IT",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/snipe-it/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/snipe-it/snipeit.star"
+    },
     {
       "name": "Drata",
       "type": "inbound",
