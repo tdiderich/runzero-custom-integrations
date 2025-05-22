@@ -12,6 +12,9 @@ ago_duration = parse_duration(duration_str)
 start_time = now() + ago_duration  # Subtracting the duration
 START_DATE = str(start_time)[:10]  # "YYYY-MM-DD"
 MAX_REQUESTS = 100
+COMPUTER_ASSETS = True
+MOBILE_ASSETS = True
+DEV_MODE = False
 
 def get_bearer_token(client_id, client_secret):
     headers = {'Content-Type': 'application/x-www-form-urlencoded', 'accept': 'application/json'}
@@ -116,6 +119,8 @@ def get_jamf_details(token, request_count, client_id, client_secret, inventory):
             continue
 
         extra = json_decode(resp.body)
+        if DEV_MODE:
+            build_asset(extra)
         if not extra:
             print("Invalid JSON for detail:", resp.body)
             continue
@@ -171,6 +176,8 @@ def get_mobile_device_details(token, request_count, client_id, client_secret, in
             continue
 
         extra = json_decode(resp.body)
+        if DEV_MODE:
+            build_mobile_asset(extra)
         if not extra:
             print("Invalid JSON for mobile detail:", resp.body)
             continue
@@ -257,7 +264,7 @@ def build_asset(item):
         return
 
     general = item.get("general") or {}
-    name = general.get("name", "")
+    name = general.get("displayName", "")
 
     os_hardware = asset_os_hardware(item) or {}
     ips = asset_ips(item)
@@ -274,11 +281,11 @@ def build_asset(item):
     for key in item.keys():
         if key == "extensionAttributes":
             for ext in item["extensionAttributes"]:
-                name = ext.get("name", None).replace(" ", "_").lower()
-                values = ext.get("values", None) or ext.get("value", None)
-                if name and values:
-                    key_name = "ext_attr_" + name
-                    custom_attributes[key_name] = ",".join(values)
+                ext_name = ext.get("name", None).replace(" ", "_").lower()
+                ext_values = ext.get("values", None) or ext.get("value", None)
+                if ext_name and ext_values:
+                    key_name = "ext_attr_" + ext_name
+                    custom_attributes[key_name] = ",".join(ext_values)
         elif key not in ["purchasing", "storage", "packageReceipts", "contentCaching"]:
             if type(item[key]) == "dict":
                 custom_attributes.update(flatten(item[key]))
@@ -329,11 +336,11 @@ def build_mobile_asset(item):
     for key in item.keys():
         if key == "extensionAttributes":
             for ext in item["extensionAttributes"]:
-                name = ext.get("name", None).replace(" ", "_").lower()
-                values = ext.get("values", None) or ext.get("value", None)
-                if name and values:
-                    key_name = "ext_attr_" + name
-                    custom_attributes[key_name] = ",".join(values)
+                ext_name = ext.get("name", None).replace(" ", "_").lower()
+                ext_values = ext.get("values", None) or ext.get("value", None)
+                if ext_name and ext_values:
+                    key_name = "ext_attr_" + ext_name
+                    custom_attributes[key_name] = ",".join(ext_values)
         elif key not in ["applications", "certificates", "purchasing", "serviceSubscription", "ebooks", "fonts", ]:
             if type(item[key]) == "dict":
                 custom_attributes.update(flatten(item[key]))
@@ -374,25 +381,28 @@ def main(*args, **kwargs):
         print("Failed to get bearer token")
         return None
 
-    # Fetch and process computer inventory
-    inventory, token, request_count = get_jamf_inventory(token, request_count, client_id, client_secret)
-    if not inventory:
-        print("No inventory data found for computers")
-    
-    details, token, request_count = get_jamf_details(token, request_count, client_id, client_secret, inventory)
-    if not details:
-        print("No details retrieved for computers")
-
-    # Fetch and process mobile device inventory
-    mobile_inventory, token, request_count = get_mobile_device_inventory(token, request_count, client_id, client_secret)
-    if not mobile_inventory:
-        print("No inventory data found for mobile devices")
-
-    mobile_details, token, request_count = get_mobile_device_details(token, request_count, client_id, client_secret, mobile_inventory)
-    if not mobile_details:
-        print("No details retrieved for mobile devices")
-
     # Build assets
-    computer_assets = build_assets(details)
-    mobile_assets = build_mobile_assets(mobile_details)
-    return computer_assets + mobile_assets
+    assets = []
+    if COMPUTER_ASSETS:
+        # Fetch and process computer inventory
+        inventory, token, request_count = get_jamf_inventory(token, request_count, client_id, client_secret)
+        if not inventory:
+            print("No inventory data found for computers")
+        
+        details, token, request_count = get_jamf_details(token, request_count, client_id, client_secret, inventory)
+        if not details:
+            print("No details retrieved for computers")
+        computer_assets = build_assets(details)
+        assets.extend(computer_assets)
+    if MOBILE_ASSETS:
+        # Fetch and process mobile device inventory
+        mobile_inventory, token, request_count = get_mobile_device_inventory(token, request_count, client_id, client_secret)
+        if not mobile_inventory:
+            print("No inventory data found for mobile devices")
+
+        mobile_details, token, request_count = get_mobile_device_details(token, request_count, client_id, client_secret, mobile_inventory)
+        if not mobile_details:
+            print("No details retrieved for mobile devices")
+        mobile_assets = build_mobile_assets(mobile_details)
+        assets.extend(mobile_assets)
+    return assets
