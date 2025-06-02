@@ -26,6 +26,7 @@ If you need help setting up a custom integration, you can create an [issue](http
 - [Device42](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/device42/)
 - [Digital Ocean](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/digital-ocean/)
 - [Drata](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/drata/)
+- [Extreme Networks CloudIQ](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/extreme-cloud-iq/)
 - [JAMF](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/jamf/)
 - [Kandji](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/kandji/)
 - [Lima Charlie](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/)
@@ -34,6 +35,7 @@ If you need help setting up a custom integration, you can create an [issue](http
 - [NinjaOne](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/ninjaone/)
 - [runZero Task Sync](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/task-sync/)
 - [Snipe-IT](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/snipe-it/)
+- [Stairwell](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/stairwell/)
 - [Tanium](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/tanium/)
 ## Export from runZero 
 - [runZero Vunerability Workflow](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/vulnerability-workflow/)
