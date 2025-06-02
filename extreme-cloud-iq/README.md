@@ -28,7 +28,7 @@
     - Use the `access_key` field for your ExtremeCloud IQ username.
     - Use the `access_secret` field for your ExtremeCloud IQ password.
 3. [Create the Custom Integration](https://console.runzero.com/custom-integrations/new).
-    - Add a Name and Icon for the integration (e.g., "ExtremeCloud IQ").
+    - Add a Name and Icon for the integration (e.g., "ExtremeCloudIQ").
     - Toggle `Enable custom integration script` and paste in the finalized script.
     - Click `Validate` to ensure the script syntax is correct.
     - Click `Save` to create the Custom Integration.
@@ -42,4 +42,4 @@
 
 - The integration task will appear on the [Tasks page](https://console.runzero.com/tasks) and begin execution.
 - The task will update existing assets in your runZero inventory or create new assets based on the data retrieved from ExtremeCloud IQ.
-- You can search for enriched assets using the query: `custom_integration:ExtremeCloud IQ`.
+- You can search for enriched assets using the query: `custom_integration:ExtremeCloudIQ`.
