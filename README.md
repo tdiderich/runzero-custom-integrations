@@ -35,6 +35,7 @@ If you need help setting up a custom integration, you can create an [issue](http
 - [NinjaOne](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/ninjaone/)
 - [runZero Task Sync](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/task-sync/)
 - [Snipe-IT](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/snipe-it/)
+- [Stairwell](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/stairwell/)
 - [Tanium](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/tanium/)
 ## Export from runZero 
 - [runZero Vunerability Workflow](https://github.com/runZeroInc/runzero-custom-integrations/blob/main/vulnerability-workflow/)

@@ -33,6 +33,12 @@
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/custom-integration-lima-charlie.star"
     },
     {
+      "name": "Stairwell",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/stairwell/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/stairwell/custom-integration-stairwell.star"
+    },
+    {
       "name": "Digital Ocean",
       "type": "inbound",
       "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/digital-ocean/README.md",
