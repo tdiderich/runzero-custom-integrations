@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-05-23T20:31:27.935744Z",
-  "totalIntegrations": 18,
+  "lastUpdated": "2025-06-02T20:43:02.899693Z",
+  "totalIntegrations": 19,
   "integrationDetails": [
     {
       "name": "Carbon Black",
@@ -97,6 +97,12 @@
       "type": "inbound",
       "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/automox/README.md",
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/automox/custom-integration-automox.star"
+    },
+    {
+      "name": "Extreme Networks CloudIQ",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/extreme-cloud-iq/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/extreme-cloud-iq/custom-integrations-extreme-cloud-iq.star"
     },
     {
       "name": "Tanium",
