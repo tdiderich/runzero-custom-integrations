@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2025-05-23T20:31:27.935744Z",
-  "totalIntegrations": 18,
+  "lastUpdated": "2025-06-02T20:57:27.229226Z",
+  "totalIntegrations": 19,
   "integrationDetails": [
     {
       "name": "Carbon Black",
@@ -31,6 +31,12 @@
       "type": "inbound",
       "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/README.md",
       "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/lima-charlie/custom-integration-lima-charlie.star"
+    },
+    {
+      "name": "Stairwell",
+      "type": "inbound",
+      "readme": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/stairwell/README.md",
+      "integration": "https://github.com/runZeroInc/runzero-custom-integrations/blob/main/stairwell/custom-integration-stairwell.star"
     },
     {
       "name": "Digital Ocean",
