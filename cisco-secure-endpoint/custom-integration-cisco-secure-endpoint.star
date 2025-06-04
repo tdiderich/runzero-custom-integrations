@@ -3,6 +3,7 @@ load('json', json_encode='encode', json_decode='decode')
 load('net', 'ip_address')
 load('http', http_post='post', http_get='get', 'url_encode')
 load('uuid', 'new_uuid')
+load('base64', base64_encode='encode')
 
 # API endpoints
 VISIBILITY_TOKEN_URL = 'https://visibility.amp.cisco.com/iroh/oauth2/token'
@@ -10,41 +11,8 @@ SECURE_ENDPOINT_TOKEN_URL = 'https://api.amp.cisco.com/v3/access_tokens'
 API_BASE_URL = 'https://api.amp.cisco.com'
 PAGE_SIZE = 500
 
-ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-
-def b64encode(data):
-    bytes_list = []
-    for c in data:
-        bytes_list.append(ord(c))
-    out = []
-    i = 0
-    while i < len(bytes_list):
-        b1 = bytes_list[i]
-        i += 1
-        b2 = None
-        if i < len(bytes_list):
-            b2 = bytes_list[i]
-            i += 1
-        b3 = None
-        if i < len(bytes_list):
-            b3 = bytes_list[i]
-            i += 1
-        triple = (b1 << 16) | ((b2 or 0) << 8) | (b3 or 0)
-        out.append(ALPHABET[(triple >> 18) & 63])
-        out.append(ALPHABET[(triple >> 12) & 63])
-        if b2 is None:
-            out.append('=')
-            out.append('=')
-        elif b3 is None:
-            out.append(ALPHABET[(triple >> 6) & 63])
-            out.append('=')
-        else:
-            out.append(ALPHABET[(triple >> 6) & 63])
-            out.append(ALPHABET[triple & 63])
-    return ''.join(out)
-
 def get_access_token(client_id, client_secret):
-    auth_header = 'Basic ' + b64encode(client_id + ':' + client_secret)
+    auth_header = 'Basic ' + base64_encode(client_id + ':' + client_secret)
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json',
