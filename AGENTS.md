@@ -66,6 +66,10 @@ load('net', 'ip_address')
 load('http', http_post='post', http_get='get', 'url_encode')
 load('uuid', 'new_uuid')
 load('time', 'parse_time')
+load('gzip', gzip_decompress='decompress', gzip_compress='compress')
+load('base64', base64_encode='encode', base64_decode='decode')
+load('crypto', 'sha256', 'sha512', 'sha1', 'md5')
+load('flatten_json', 'flatten')
 ```
 
 ### Best Practices
@@ -108,6 +112,153 @@ load('time', 'parse_time')
                 ip6s.append(addr)
         return NetworkInterface(macAddress=mac, ipv4Addresses=ip4s, ipv6Addresses=ip6s)
     ```
+
+## Library Reference & Examples
+
+This section provides usage examples for the available Starlark libraries.
+
+### requests
+Used for handling HTTP sessions and cookies.
+
+```python
+load('requests', 'Session', 'Cookie')
+load('json', json_decode='decode')
+
+def requests_example():
+    session = Session()
+    session.headers.set('Accept', 'application/json')
+    session.headers.set('User-Agent', 'Mozilla/5.0')
+
+    url = 'https://api.example.com/data'
+    session.cookies.set(url, {"session_id": "12345"})
+
+    response = session.get(url)
+    if response and response.status_code == 200:
+        data = json_decode(response.body)
+        print("Data:", data)
+```
+
+### http
+Used for stateless HTTP requests (`get`, `post`, `patch`, `delete`) and URL encoding.
+
+```python
+load('http', http_post='post', http_get='get', 'url_encode')
+
+def http_example():
+    url = "https://api.example.com/resource"
+    headers = {"Accept": "application/json"}
+
+    # GET request
+    response = http_get(url, headers=headers)
+
+    # POST request with JSON body
+    payload = {"name": "runZero"}
+    response_post = http_post(
+        url,
+        headers=headers,
+        body=bytes(json_encode(payload))
+    )
+```
+
+### net
+Used for IP address parsing and validation.
+
+```python
+load('net', 'ip_address')
+
+def net_example(ip_str):
+    # ip_str can be IPv4 or IPv6
+    addr = ip_address(ip_str)
+    print("IP:", addr)
+    print("Version:", addr.version) # 4 or 6
+```
+
+### json
+Used for JSON encoding and decoding.
+
+```python
+load('json', json_encode='encode', json_decode='decode')
+
+def json_example():
+    data = {"name": "runZero", "active": True}
+
+    # Encode to string
+    encoded = json_encode(data)
+
+    # Decode to dict
+    decoded = json_decode(encoded)
+```
+
+### time
+Used for parsing time strings.
+
+```python
+load('time', 'parse_time')
+
+def time_example():
+    time_str = "2023-10-27T10:00:00Z"
+    parsed = parse_time(time_str)
+    print("Unix Timestamp:", parsed.unix)
+```
+
+### uuid
+Used for generating UUIDs.
+
+```python
+load('uuid', 'new_uuid')
+
+def uuid_example():
+    uid = new_uuid()
+    print("New UUID:", uid)
+```
+
+### gzip
+Used for compression and decompression.
+
+```python
+load('gzip', gzip_decompress='decompress', gzip_compress='compress')
+
+def gzip_example(data_bytes):
+    compressed = gzip_compress(data_bytes)
+    decompressed = gzip_decompress(compressed)
+```
+
+### base64
+Used for Base64 encoding and decoding.
+
+```python
+load('base64', base64_encode='encode', base64_decode='decode')
+
+def base64_example():
+    creds = "user:pass"
+    encoded = base64_encode(creds)
+    decoded = base64_decode(encoded)
+```
+
+### crypto
+Used for hashing (SHA256, SHA512, SHA1, MD5).
+
+```python
+load('crypto', 'sha256', 'sha512', 'sha1', 'md5')
+
+def crypto_example():
+    data = "secret_data"
+    hash_256 = sha256(data)
+    hash_512 = sha512(data)
+    print("SHA256:", hash_256)
+```
+
+### flatten (json)
+Used to flatten nested JSON structures.
+
+```python
+load('flatten_json', 'flatten')
+
+def flatten_example():
+    nested = {"a": {"b": 1, "c": 2}, "d": 3}
+    flat = flatten(nested)
+    # Result: {"a.b": 1, "a.c": 2, "d": 3}
+```
 
 ## Testing
 
